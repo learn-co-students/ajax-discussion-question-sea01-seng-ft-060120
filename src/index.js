@@ -6,8 +6,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 
-
-
 const fetchInfo = () => {
   fetch('https://randomuser.me/api/')
   .then(res => res.json())
@@ -15,12 +13,39 @@ const fetchInfo = () => {
 }
 
 const displayRandomUser = (json) => {
-  displayProfilePic(json.picture.medium)
-}
 
-const displayProfilePic = (src) => {
-  const image = document.getElementById('profile_picture')
-  image.src = src
+  let { cell, dob, email, location, name, phone, picture } = json
+
+  let img = document.getElementById('profile_picture')
+  img.src = picture.medium
+
+  let fullname = document.getElementById('fullname')
+  fullname.textContent = `${name.first} ${name.last}`
+
+  let e = document.getElementById('email')
+  e.textContent = email
+
+  let s = document.getElementById('street')
+  s.textContent = location.street.name
+
+  let c = document.getElementById('city')
+  c.textContent = location.city
+
+  let st = document.getElementById('state')
+  st.textContent = location.state
+
+  let p = document.getElementById('postcode')
+  p.textContent = location.postcode
+
+  let ph = document.getElementById('phone')
+  ph.textContent = phone
+
+  let cl = document.getElementById('cell')
+  cl.textContent = cell
+
+  let d = document.getElementById('date_of_birth')
+  d.textContent = dob.date
+
 }
 
 let btn = document.querySelector('button')
